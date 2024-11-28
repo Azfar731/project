@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+      /* Feedback Section Styling */
+      .feedback-section {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ddd; /* Light gray border */
+        border-radius: 8px;
+        background-color: #f9f9f9; /* Light gray background */
+        color: gray; /* Text color matching the existing theme */
+      }
+
+      .feedback-section h3 {
+        text-align: center;
+        color: gray;
+        margin-bottom: 10px;
+      }
+
+      .feedback-section p {
+        font-size: 16px;
+        text-align: center;
+        line-height: 1.6;
+      }
+
+      .feedback-section .no-feedback {
+        color: #f44336; /* Red for no feedback */
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/logout" class="link link-logout">Logout</a>
+    <div class="container">
+      <h2>Client Feedback</h2>
+      <form action="/get-feedback" method="GET">
+        <label for="email">Client Email:</label>
+        <input type="email" id="email" name="email" class="input" required />
+        <button type="submit">Get Feedback</button>
+      </form>
+      <% if (typeof errorMessage !== "undefined") { %>
+      <p class="error"><%= errorMessage %></p>
+      <% } %> <% if (typeof client !== "undefined" && client) { %>
+      <div class="feedback-section">
+        <h3>
+          Feedback for <%= client.firstName %> <%= client.lastName
+          %>(<%=client.email%>)
+        </h3>
+        <% if (client.feedback) { %>
+        <p class="feedback"><%= client.feedback %></p>
+        <% } else { %>
+        <p class="no-feedback">The client has provided no feedback yet.</p>
+        <% } %>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>

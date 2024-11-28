@@ -79,3 +79,102 @@ button:hover {
   color: red;
   font-weight: bold;
 }
+
+.link {
+  font-size: 16px;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+/* Sign Up Link */
+.link-signup {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1a73e8; /* Google-like blue */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+.link-signup:hover {
+  color: #0056b3; /* Slightly darker blue for hover */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+/* Login Link */
+.link-login {
+  background-color: #2196f3;
+  color: white;
+  border: 1px solid #2196f3;
+}
+
+.link-login:hover {
+  background-color: white;
+  color: #2196f3;
+  border-color: #2196f3;
+}
+
+/* Logout Link */
+.link-logout {
+  background-color: #f44336;
+  color: white;
+  border: 1px solid #f44336;
+}
+
+.link-logout:hover {
+  background-color: white;
+  color: #f44336;
+  border-color: #f44336;
+}
+.feedback-section {
+  padding: 20px;
+  
+  border: 1px solid #ddd; /* Subtle gray border */
+  border-radius: 8px;
+  background-color: #f9f9f9; /* Light gray background */
+  text-align: center; /* Center-align text */
+  color: gray; /* Match <h2> styling */
+}
+
+.feedback-section h3 {
+  margin-bottom: 10px;
+  color: gray; /* Match <h2> styling */
+  font-size: 20px;
+}
+
+.feedback-section p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+/* Centered Button Styling */
+.center-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.center-button a {
+  font-size: 16px;
+  text-decoration: none;
+  color: gray;
+  border: 1px solid gray;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.center-button a:hover {
+  background-color: gray;
+  color: white;
+}
+
+.feedback{
+    background-color: white;
+    border: 1px solid grey;
+    color: black;
+}

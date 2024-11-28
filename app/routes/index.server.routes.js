@@ -8,4 +8,7 @@ export default (app) => {
   app.get("/feedback", controller.renderFeedback);
   app.post("/submit-feedback", controller.submitFeedback);
   app.get("/thankyou", controller.renderThankYou);
+  app.get("/logout", controller.handleLogout);
+  app.get("/dashboard", controller.renderDashboard);
+  app.get("/get-feedback", controller.fetchFeedback);
 };

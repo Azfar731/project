@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
+    <a href="/logout" class="link link-logout">Logout</a>
     <div class="container">
       <h2>Feedback</h2>
       <form action="/submit-feedback" method="POST">
@@ -13,7 +14,7 @@
           class="input"
           type="email"
           name="email"
-          value="<%= client.email %>"
+          value="<%= user.email %>"
           readonly
         />
         <label for="firstName">First Name</label>
@@ -22,7 +23,7 @@
           type="text"
           name="firstName"
           id="firstName"
-          value="<%= client.firstName %>"
+          value="<%= user.firstName %>"
           required
         />
         <label for="lastName">Last Name</label>
@@ -31,7 +32,7 @@
           type="text"
           name="lastName"
           id="lastName"
-          value="<%= client.lastName %>"
+          value="<%= user.lastName %>"
           required
         />
         <label for="city">City</label>
@@ -40,7 +41,7 @@
           type="text"
           name="city"
           id="city"
-          value="<%= client.city %>"
+          value="<%= user.city %>"
           required
         />
         <label for="postalCode">Postal Code</label>
@@ -49,7 +50,7 @@
           type="text"
           name="postalCode"
           id="postalCode"
-          value="<%= client.postalCode %>"
+          value="<%= user.postalCode %>"
           required
         />
         <label for="feedback">Feedback</label>
@@ -58,7 +59,7 @@
           id="feedback"
           class="textarea"
           required
-        ><%= client.feedback %></textarea>
+        ><%= user.feedback %></textarea>
         <button type="submit">Submit Feedback</button>
       </form>
     </div>

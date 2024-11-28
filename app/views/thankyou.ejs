@@ -5,17 +5,18 @@
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
+    <a href="/logout" class="link link-logout">Logout</a>
     <div class="container">
-      <h2>Thank You, <%= firstName %> <%= lastName %>!</h2>
-
-      <div class="text-align">
-        <p>We apprecitate your feedback!</p>
-      </div>
-      <div class="text-align">
-        <p>Your feedback: <%= feedback %></p>
-      </div>
-      <div class="text-align">
-        <a href="/feedback">Change Your feedback</a>
+      <div class="feedback-section">
+        <h2>Thank You, <%= firstName %> <%= lastName %>!</h2>
+        <h3>We appreciate your feedback!</h3>
+        <h4>Feedback</h4>
+        <div>
+          <p class="feedback"><%= feedback %></p>
+        </div>
+        <div class="center-button">
+          <a href="/feedback">Go Back to Form</a>
+        </div>
       </div>
     </div>
   </body>

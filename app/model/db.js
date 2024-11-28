@@ -49,6 +49,8 @@ async function insertClient(clientData) {
 }
 
 
+
+
 async function fetchClients() {
   const collection = await connect();
   try {
@@ -89,7 +91,7 @@ async function addFeedback(email, feedback) {
   }
 }
 
-// Example usage of functions
+// Example data
 const newClient = {
   email: "john.doe@example.com",
   password: "password123",
@@ -99,6 +101,18 @@ const newClient = {
   postalCode: "10001",
 };
 
+const admin = {
+  email: "admin@gmail.com",
+  password: "admin123",
+  role: "admin",
+  firstName: "Haleemah",
+  lastName: "Anwary",
+  city: "Tornonto",
+  postalCode: "M1B 3C5",
+}
+
+// insertClient(admin);
+// console.log(await fetchClients())
 // Export functions
 const db = {
   insertClient,
