@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Feedback</h2>
+      <form action="/submit-feedback" method="POST">
+        <label>Email</label>
+        <input
+          class="input"
+          type="email"
+          name="email"
+          value="<%= client.email %>"
+          readonly
+        />
+        <label for="firstName">First Name</label>
+        <input
+          class="input"
+          type="text"
+          name="firstName"
+          id="firstName"
+          value="<%= client.firstName %>"
+          required
+        />
+        <label for="lastName">Last Name</label>
+        <input
+          class="input"
+          type="text"
+          name="lastName"
+          id="lastName"
+          value="<%= client.lastName %>"
+          required
+        />
+        <label for="city">City</label>
+        <input
+          class="input"
+          type="text"
+          name="city"
+          id="city"
+          value="<%= client.city %>"
+          required
+        />
+        <label for="postalCode">Postal Code</label>
+        <input
+          class="input"
+          type="text"
+          name="postalCode"
+          id="postalCode"
+          value="<%= client.postalCode %>"
+          required
+        />
+        <label for="feedback">Feedback</label>
+        <textarea
+          name="feedback"
+          id="feedback"
+          class="textarea"
+          required
+        ><%= client.feedback %></textarea>
+        <button type="submit">Submit Feedback</button>
+      </form>
+    </div>
+  </body>
+</html>
