@@ -1,3 +1,5 @@
+//run  this file to create sample users in the database
+
 import db from './app/model/db.js';
 
 async function setupDatabase() {

@@ -18,7 +18,7 @@ const handleLogin = async (req, res) => {
   }
   const user = await userExists(req.body.email, req.body.password);
   if (user) {
-    req.session.loggedIn = true;
+    req.session.user = true;
 
     if (user.role === "client") {
       req.session.user = {
@@ -67,7 +67,7 @@ const userExists = async (email, password) => {
 };
 
 const renderSignUp = (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.user) {
     return res.redirect("/feedback");
   }
 
@@ -105,7 +105,7 @@ async function handleSignUp(req, res) {
 
 const renderFeedback = (req, res) => {
   // checks if a user has logged in. redirect to login page if not logged in
-  if (!req.session.loggedIn) {
+  if (!req.session.user) {
     return res.redirect("/");
   }
 
@@ -138,14 +138,14 @@ const renderThankYou = (req, res) => {
 
 //create a dashboard for admin
 const renderDashboard = (req, res) => {
-  if (!req.session.loggedIn || req.session.user.role !== "admin") {
+  if (!req.session.user || req.session.user.role !== "admin") {
     return res.redirect("/");
   }
   res.render("dashboard", { title: "Dashboard" });
 };
 
 const fetchFeedback = async (req, res) => {
-  if (!req.session.loggedIn || req.session.user.role !== "admin") {
+  if (!req.session.user || req.session.user.role !== "admin") {
     return res.redirect("/");
   }
   const email = req.query.email;

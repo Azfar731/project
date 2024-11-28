@@ -3,10 +3,7 @@ import bcrypt from "bcrypt";
 
 const url = "mongodb://localhost:27017";
 const dbName = "express_project";
-const client = new MongoClient(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const client = new MongoClient(url);
 
 let collection;
 
@@ -18,7 +15,7 @@ async function connect() {
       console.log("Connected successfully to server");
     }
     const db = client.db(dbName);
-    collection = collection || db.collection("clients"); // Reuse the collection
+    collection = collection || db.collection("users"); // Reuse the collection
     return collection;
   } catch (err) {
     console.error("Connection error:", err);
@@ -30,7 +27,9 @@ async function insertClient(clientData) {
   const collection = await connect();
   try {
     // Check if the email already exists
-    const existingClient = await collection.findOne({ email: clientData.email });
+    const existingClient = await collection.findOne({
+      email: clientData.email,
+    });
     if (existingClient) {
       throw new Error("Email already exists");
     }
@@ -47,9 +46,6 @@ async function insertClient(clientData) {
     throw err; // Rethrow the error for higher-level handling
   }
 }
-
-
-
 
 async function fetchClients() {
   const collection = await connect();
@@ -109,7 +105,7 @@ const admin = {
   lastName: "Anwary",
   city: "Tornonto",
   postalCode: "M1B 3C5",
-}
+};
 
 // insertClient(admin);
 // console.log(await fetchClients())

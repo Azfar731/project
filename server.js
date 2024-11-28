@@ -1,6 +1,6 @@
 import createApp from './config/express.js';
 
-const PORT = process.env.PORT || 5000;
+const PORT = 3000;
 
 createApp().then(app => {
   app.listen(PORT, () => {
