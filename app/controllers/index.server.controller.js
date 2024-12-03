@@ -3,9 +3,9 @@ import bcrypt from "bcrypt";
 
 const renderLogin = (req, res) => {
   if (req.session.user) {
-    if(req.session.user.role === "client"){
+    if (req.session.user.role === "client") {
       return res.redirect("/feedback");
-    }else if(req.session.user.role === "admin"){
+    } else if (req.session.user.role === "admin") {
       return res.redirect("/dashboard");
     }
   }
@@ -34,11 +34,6 @@ const handleLogin = async (req, res) => {
     } else if (user.role === "admin") {
       req.session.user = {
         email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        city: user.city,
-        postalCode: user.postalCode,
-        feedback: user.feedback,
         role: user.role,
       };
       return res.redirect("/dashboard");
@@ -68,7 +63,11 @@ const userExists = async (email, password) => {
 
 const renderSignUp = (req, res) => {
   if (req.session.user) {
-    return res.redirect("/feedback");
+    if (req.session.user.role === "client") {
+      return res.redirect("/feedback");
+    } else if (req.session.user.role === "admin") {
+      return res.redirect("/dashboard");
+    }
   }
 
   res.render("signup", { title: "Sign Up" });
@@ -99,7 +98,6 @@ async function handleSignUp(req, res) {
       });
     }
     console.error("Error inserting client data:", err);
-    res.status(500).send("Error inserting client data");
   }
 }
 
@@ -125,7 +123,7 @@ const submitFeedback = async (req, res) => {
 
 const renderThankYou = (req, res) => {
   //checks if user has filled the form. if not, redirect to feedback
-  if (!req.session.user.feedback) {
+  if (!req.session.user || !req.session.user.feedback) {
     return res.redirect("/feedback");
   }
   res.render("thankyou", {
@@ -149,10 +147,15 @@ const fetchFeedback = async (req, res) => {
     return res.redirect("/");
   }
   const email = req.query.email;
-  console.log("email provided", email)
+  console.log("email provided", email);
   const client = await db.fetchClient(req.query.email);
   if (client !== null) {
-    console.log("client found", client.firstName, client.lastName, client.feedback)
+    console.log(
+      "client found",
+      client.firstName,
+      client.lastName,
+      client.feedback
+    );
     res.render("dashboard", {
       title: "Dashboard",
       client: {
@@ -162,7 +165,7 @@ const fetchFeedback = async (req, res) => {
         email: client.email,
       },
     });
-  }else{
+  } else {
     res.render("dashboard", {
       title: "Dashboard",
       errorMessage: "No client found with this email",
@@ -178,7 +181,7 @@ const handleLogout = (req, res) => {
     }
     res.redirect("/");
   });
-}
+};
 
 const controller = {
   renderLogin,
